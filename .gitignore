@@ -13,3 +13,5 @@ media/
 .venv
 venv/
 
+./Async_Api_call/local_database_calls/migrations
+./Async_Api_call/youtube_server_calls/migrations
