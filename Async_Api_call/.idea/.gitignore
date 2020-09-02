@@ -1,0 +1,15 @@
+# Default ignored files
+/workspace.xml
+
+/shelf/
+/workspace.xml
+*.sqlite3
+media/
+*.idea
+
+.env
+
+# virtualenv
+.venv
+venv/
+
