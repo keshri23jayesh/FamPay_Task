@@ -2,5 +2,5 @@ from django.conf.urls import url
 from youtube_server_calls import youtube_server_call_request
 
 urlpatterns = [
-    url(r'^thread_function$', youtube_server_call_request.youtube_search_api, name="thread_function")
+    url(r'^start_data_pulling$', youtube_server_call_request.TriggerYouTubeSearch.as_view(), name="start_data_pulling")
 ]

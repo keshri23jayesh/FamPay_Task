@@ -8,9 +8,13 @@ from youtube_server_calls.youtube_search_api_config import youtube_search_api_co
 
 youtube_search_api_config_instance = youtube_search_api_config()
 
-interval = 10
 
-
-def youtube_search_api(request):
-    youtube_search_api_config_instance.youtube_search_api()
-    return JsonResponse({'status': 'True'})
+class TriggerYouTubeSearch(APIView):
+    def get(self, request):
+        """
+        Triggering thread function for continuously pulling data
+        :param request:
+        :return: True
+        """
+        youtube_search_api_config_instance.youtube_search_api()
+        return JsonResponse({'status': 'True'})
