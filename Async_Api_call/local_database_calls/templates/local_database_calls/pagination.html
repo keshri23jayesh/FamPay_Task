@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Add a gray background color and some padding to the footer */
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+
+        .carousel-inner img {
+            width: 100%; /* Set width to 100% */
+            margin: auto;
+            min-height:200px;
+        }
+
+        /* Hide the carousel text when the screen is less than 600 pixels wide */
+        @media (max-width: 600px) {
+            .carousel-caption {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container text-center">
+    <h3>What We Do</h3><br>
+    <button onclick="nextcall();" type="button" class="btn">Next Page >> </button>
+    <br/>
+    <br/>
+    <div class="row" id="populate">
+        <div class="col-sm-4">
+            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            <p>Current Project</p>
+        </div>
+    </div>
+</div><br>
+
+<footer class="container-fluid text-center">
+    <p>Footer Text</p>
+</footer>
+
+</body>
+
+<script>
+
+    let next_no=1;
+    submitForm(1);
+    function nextcall() {
+        next_no++;
+        submitForm(next_no);
+    }
+
+
+    function submitForm(page_no) {
+        $.ajax({
+            data: {
+                'page_no': page_no
+            },
+            url: '/local/get_pagination_video_response?page_no='+ page_no,
+            type: "GET",
+            success: function (response) {
+                populateGrid(response);
+                console.log((response));
+            }
+        });
+    }
+
+
+
+    function populateGrid(response) {
+        let rowelement = $('#populate');
+        rowelement.empty();
+        let localItemlist = response;
+
+        localItemlist.forEach(function(item){
+            rowelement.append(
+             "<div class='col-sm-4'>"+
+             "<a href ='https://www.youtube.com/watch?v="+ item.video_id +"' target ='_blank'>"+
+             "<img src='"+ item.thumbnail_url +"' class='img-responsive' style='width:100%' alt='Image'>"+
+             "</a>" +
+             "<p>" + item.video_title.substring(0, 40) + "</p>"+
+             "<p>" + item.video_desc.substring(0, 40) + "</p>"+
+             "</div>"
+            )
+        });
+
+    }
+
+</script>
+
+</html>
