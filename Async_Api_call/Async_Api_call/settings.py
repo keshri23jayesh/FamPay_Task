@@ -88,6 +88,7 @@ REST_FRAMEWORK = {
 #     }
 # }
 
+# docker
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -98,6 +99,19 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+
+# general
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'testdb',
+#         'HOST': 'localhost',
+#         'USER': 'root',
+#         'PASSWORD': 'Welcome123$',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
