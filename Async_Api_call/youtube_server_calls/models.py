@@ -18,12 +18,12 @@ models.CharField.register_lookup(Search)
 models.TextField.register_lookup(Search)
 
 
-class videos(models.Model):
+class video_details(models.Model):
     video_id = models.CharField(max_length=50, unique=True)
-    publishedAt = models.TextField()
+    publishedAt = models.CharField(max_length=50)
     video_title = models.TextField(blank=True)
     video_desc = models.TextField(blank=True)
     thumbnail_url = models.TextField(blank=True)
 
     class Meta:
-        db_table = 'VIDEOS'
+        db_table = 'VIDEO_DETAILS'
