@@ -30,6 +30,8 @@ How to run:
 	- http://127.0.0.1:8000/local/get_search_response?params=python%20is%20good%20lag Return Json Response for text search
 
 
+Note- Check Fam_Pay_Task.postman_collection.json for APIS
+
 References:
 ---
 
