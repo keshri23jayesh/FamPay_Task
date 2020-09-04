@@ -27,3 +27,10 @@ class video_details(models.Model):
 
     class Meta:
         db_table = 'VIDEO_DETAILS'
+
+
+class api_keys(models.Model):
+    api_key = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        db_table = 'API_KEYS'
