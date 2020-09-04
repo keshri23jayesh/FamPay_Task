@@ -1,13 +1,27 @@
 import datetime
 from threading import Timer
 import requests
-from youtube_server_calls.models import video_details
+from youtube_server_calls.models import video_details, api_keys
 
 import json
 
 # interval to call thread API
 interval = 10
+API_KEY = 'AIzaSyCLDdK3sLahpBnc1lxNOhGFKuUmM_5E3Ac'
 
+def fetch_api_key():
+    """
+    Assumed we have enough API KEYS to change.
+    """
+    global API_KEY
+    API_KEY = api_keys.objects.filter(status=True)[0].api_key
+
+
+def mark_this_key_false():
+    global API_KEY
+    obj = api_keys.objects.get(api_key=API_KEY)
+    obj.status = False
+    obj.save()
 
 def check_existing_entry(video_id:str):
     """
@@ -33,7 +47,7 @@ def destructure_video_details(video_obj:dict):
     video_id = video_obj['id']['videoId']
     if not check_existing_entry(video_id):
         video_detail_dict['video_id'] = video_id
-        video_detail_dict['publishedAt'] = video_obj['snippet']['publishedAt']
+        video_detail_dict['publishedAt'] = (video_obj['snippet']['publishedAt']).replace('T',' ').replace('Z','')
         video_detail_dict['video_title'] = video_obj['snippet']['title']
         video_detail_dict['video_desc'] = video_obj['snippet']['description']
         video_detail_dict['thumbnail_url'] = video_obj['snippet']['thumbnails']['default']['url']
@@ -77,13 +91,12 @@ class youtube_search_api_config():
         :return: None
         """
         search_url = 'https://www.googleapis.com/youtube/v3/search'
-        KEY = 'AIzaSyCLDdK3sLahpBnc1lxNOhGFKuUmM_5E3Ac'
         d = datetime.datetime.today() - datetime.timedelta(days=1)
         RFC_formatted = d.isoformat("T") + "Z"
         params = {
             'part': 'snippet',
             'q': 'python',
-            'key': KEY,
+            'key': API_KEY,
             'type': 'video',
             'order': 'date',
             'publishedAfter': RFC_formatted,
@@ -93,4 +106,7 @@ class youtube_search_api_config():
         if r.status_code == 200:
             r = json.loads(r.text)
             insert_new_video_data(r['items'])
+        elif r.status_code == 403:
+            mark_this_key_false()
+            fetch_api_key()
         Timer(interval, self.youtube_search_api).start()

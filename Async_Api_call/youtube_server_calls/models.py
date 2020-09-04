@@ -20,7 +20,7 @@ models.TextField.register_lookup(Search)
 
 class video_details(models.Model):
     video_id = models.CharField(max_length=50, unique=True)
-    publishedAt = models.CharField(max_length=50)
+    publishedAt = models.DateTimeField(max_length=50)
     video_title = models.TextField(blank=True)
     video_desc = models.TextField(blank=True)
     thumbnail_url = models.TextField(blank=True)
@@ -31,6 +31,7 @@ class video_details(models.Model):
 
 class api_keys(models.Model):
     api_key = models.CharField(max_length=50, unique=True)
+    status = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'API_KEYS'
