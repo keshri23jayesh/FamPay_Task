@@ -27,7 +27,7 @@ How to run:
 
 - Apis URL
 	- http://127.0.0.1:8000/local/get_pagination_video_response?page_no=2 Return Json Response for Pagination
-	- http://127.0.0.1:8000/local/get_search_response?params=python
+	- http://127.0.0.1:8000/local/get_search_response?params=python%20is%20good%20lag Return Json Response for text search
 
 
 References:
