@@ -25,7 +25,7 @@ SECRET_KEY = '=rg27b!ov+90!+e^e)cq+p2b*vp5c7xdcn_#r$)4seu8ug)-42'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'youtube_server_calls',
     'local_database_calls',
 ]
@@ -72,13 +73,29 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Async_Api_call.wsgi.application'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'testdb',
+        'HOST': '127.0.0.1',
+        'USER': 'root',
+        'PASSWORD': 'Welcome123$',
+        'PORT': '3306',
     }
 }
 

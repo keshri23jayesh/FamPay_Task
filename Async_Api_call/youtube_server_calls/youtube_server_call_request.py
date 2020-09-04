@@ -17,4 +17,4 @@ class TriggerYouTubeSearch(APIView):
         :return: True
         """
         youtube_search_api_config_instance.youtube_search_api()
-        return JsonResponse({'status': 'True'})
+        return JsonResponse({'status': 'SuccessFully Triggered Youtube API call.'})

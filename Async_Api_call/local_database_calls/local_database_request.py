@@ -51,7 +51,7 @@ def load_pagination_page(request):
         context = {}
         return HttpResponse(template.render(context, request))
     except Exception as e:
-        pass
+        print(e)
 
 
 def load_search_template(request):
@@ -64,4 +64,4 @@ def load_search_template(request):
         context = {}
         return HttpResponse(template.render(context, request))
     except Exception as e:
-        pass
+        print(e)
