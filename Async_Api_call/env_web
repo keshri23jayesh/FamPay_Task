@@ -1,0 +1,8 @@
+# Add Environment Variables
+DB_NAME=testdb
+DB_USER=fam_pay_user
+DB_PASS=Welcome123
+DB_SERVICE=db
+DB_HOST=0.0.0.0
+DB_PORT=3306
+START_CMD=python manage.py runserver 0.0.0.0:8000
