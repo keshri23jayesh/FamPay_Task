@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: fam_pay_task_1
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'testdb'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'Welcome123'
+      MYSQL_ROOT_PASSWORD: 'root'
+  web:
+    build: .
+    env_file: env_web
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && bash db_indexing.sh && python manage.py runserver 0.0.0.0:8000"
+    container_name: fam_pay_task
+    volumes:
+      - .:/fam_pay_task
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
