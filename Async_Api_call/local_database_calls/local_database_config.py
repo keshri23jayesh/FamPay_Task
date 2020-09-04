@@ -44,7 +44,7 @@ class LocalDatabaseApiConfig():
         pass
 
     def get_next_pagination_response(self, page_no):
-        response = video_details.objects.all().order_by('id')
+        response = video_details.objects.all().order_by('-publishedAt')
         pagineted_response = Paginator(response, 10)
         page = pagineted_response.page(page_no)
         serializer = video_detailsSerializer(page, many=True)
