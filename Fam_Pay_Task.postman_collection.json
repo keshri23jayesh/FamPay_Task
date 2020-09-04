@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "cff9ea18-72af-47e7-88ba-2c4c9b96f2fe",
+		"name": "Fam_Pay_Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://0.0.0.0:8000/call_me_first/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://0.0.0.0:8000/local/get_pagination_video_response?page_no=2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://0.0.0.0:8000/local/get_search_response?params=python%20is%20good%20lag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
